@@ -3,6 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Map from '@/components/Map';
 
 const Index = () => {
   const attractions = [
@@ -12,7 +13,8 @@ const Index = () => {
       description: 'Уникальный остров с древними мегалитами и археологическими находками',
       image: 'https://cdn.poehali.dev/projects/ac486fde-6b1b-4c17-a70f-22a32ee162d1/files/8a669dd9-0bc6-44d6-8644-90bf855a7b70.jpg',
       distance: '12 км от Златоуста',
-      type: 'Культурное наследие'
+      type: 'Культурное наследие',
+      coordinates: [55.1650, 60.0850] as [number, number]
     },
     {
       id: 2,
@@ -20,15 +22,17 @@ const Index = () => {
       description: 'Чистейший песчаный пляж с прозрачной водой и живописными видами',
       image: 'https://cdn.poehali.dev/projects/ac486fde-6b1b-4c17-a70f-22a32ee162d1/files/a68b8c76-df77-4511-9411-c5691c596e0d.jpg',
       distance: '15 км от Златоуста',
-      type: 'Пляжный отдых'
+      type: 'Пляжный отдых',
+      coordinates: [55.1700, 60.0900] as [number, number]
     },
     {
       id: 3,
       name: 'Гора Заозёрная',
       description: 'Смотровая площадка с панорамным видом на озеро и окрестности',
       image: 'https://cdn.poehali.dev/projects/ac486fde-6b1b-4c17-a70f-22a32ee162d1/files/44589105-eb54-4c07-8a31-8b16e44f1207.jpg',
-      distance: '18 км от Zlatousta',
-      type: 'Активный отдых'
+      distance: '18 км от Златоуста',
+      type: 'Активный отдых',
+      coordinates: [55.1800, 60.1000] as [number, number]
     }
   ];
 
@@ -217,36 +221,8 @@ const Index = () => {
 
             <div className="lg:col-span-2">
               <Card className="h-full">
-                <CardContent className="p-0 h-full min-h-[500px] relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100 rounded-lg flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <Icon name="Map" className="text-primary mx-auto mb-4" size={64} />
-                      <h3 className="text-xl font-semibold mb-2">Карта маршрута</h3>
-                      <p className="text-muted-foreground mb-4">
-                        Маршрут: Златоуст → {selectedDestination.name}
-                      </p>
-                      <div className="bg-white p-6 rounded-lg max-w-md mx-auto text-left space-y-3">
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                            1
-                          </div>
-                          <p className="text-sm">Выезжайте из Златоуста по трассе М-5</p>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                            2
-                          </div>
-                          <p className="text-sm">Поверните направо на указателе "Тургояк"</p>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                            3
-                          </div>
-                          <p className="text-sm">Следуйте по главной дороге до {selectedDestination.name}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <CardContent className="p-0 h-full min-h-[500px]">
+                  <Map destination={{ name: selectedDestination.name, coordinates: selectedDestination.coordinates }} />
                 </CardContent>
               </Card>
             </div>
